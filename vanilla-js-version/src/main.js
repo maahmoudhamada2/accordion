@@ -44,8 +44,22 @@ function createAccordionItem({ question, answer }) {
     const questionBtn = document.createElement("button");
     const answerDiv = document.createElement("div");
 
+    const handleClick = () => {
+        document.querySelectorAll('.accordion-answer').forEach((answer) => {
+            answer.classList.remove('expand')
+            answer.classList.add('collapse')
+        })
+        answerDiv.classList.remove('collapse');
+        answerDiv.classList.add('expand')
+    }
+
     questionBtn.textContent = question;
+    questionBtn.classList.add('accordion-question')
+    questionBtn.addEventListener('click', handleClick)
+
     answerDiv.textContent = answer;
+    answerDiv.classList.add('accordion-answer', 'collapse')
+
 
     section.append(questionBtn, answerDiv);
     return section;
