@@ -1,36 +1,30 @@
 const qnaList = [
     {
-        id: 1,
         question: "What is roadmap.sh?",
         answer:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus delectus sed architecto vero nisi quod explicabo voluptate. Cum a dolorum id vitae, nostrum blanditiis hic in? Ab, laboriosam eaque?",
     },
     {
-        id: 2,
         question: "What are the plans for roadmap.sh?",
         answer:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus delectus sed architecto vero nisi quod explicabo voluptate. Cum a dolorum id vitae, nostrum blanditiis hic in? Ab, laboriosam eaque?",
     },
     {
-        id: 3,
         question: "How is roadmap.sh built?",
         answer:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus delectus sed architecto vero nisi quod explicabo voluptate. Cum a dolorum id vitae, nostrum blanditiis hic in? Ab, laboriosam eaque?",
     },
     {
-        id: 4,
         question: "Can i use roadmap.sh in my team ?",
         answer:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus delectus sed architecto vero nisi quod explicabo voluptate. Cum a dolorum id vitae, nostrum blanditiis hic in? Ab, laboriosam eaque?",
     },
     {
-        id: 5,
         question: "How can i create custom roadmaps?",
         answer:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus delectus sed architecto vero nisi quod explicabo voluptate. Cum a dolorum id vitae, nostrum blanditiis hic in? Ab, laboriosam eaque?",
     },
     {
-        id: 6,
         question: "is roadmap.sh really 7th most starred project on Github?",
         answer:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus delectus sed architecto vero nisi quod explicabo voluptate. Cum a dolorum id vitae, nostrum blanditiis hic in? Ab, laboriosam eaque?",
@@ -45,12 +39,14 @@ function createAccordionItem({ question, answer }) {
     const answerDiv = document.createElement("div");
 
     const handleClick = () => {
-        document.querySelectorAll('.accordion-answer').forEach((answer) => {
-            answer.classList.remove('expand')
-            answer.classList.add('collapse')
-        })
-        answerDiv.classList.remove('collapse');
-        answerDiv.classList.add('expand')
+        if (answerDiv.classList.value.includes('expand')) {
+            answerDiv.classList.replace('expand', 'collapse')
+        } else {
+            document.querySelectorAll('.accordion-answer').forEach((answer) => {
+                answer.classList.replace('expand', 'collapse')
+            })
+            answerDiv.classList.replace('collapse', 'expand')
+        }
     }
 
     questionBtn.textContent = question;
@@ -69,14 +65,16 @@ function createAccordionItem({ question, answer }) {
 const container = document.querySelector('.container');
 
 function renderAccordionItems() {
-    const qnaElemnts = []
+    const qnaElements = []
     for (let qna of qnaList) {
-        qnaElemnts.push(createAccordionItem(qna))
+        qnaElements.push(createAccordionItem(qna))
     }
 
-    for (let elem of qnaElemnts) {
+    qnaElements.forEach((elem, idx) => {
+        if (idx === 0) elem.children[1].classList.replace('collapse', 'expand')
         container.appendChild(elem)
-    }
+    })
+
 }
 
 renderAccordionItems()
