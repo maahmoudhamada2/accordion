@@ -50,3 +50,19 @@ function createAccordionItem({ question, answer }) {
     section.append(questionBtn, answerDiv);
     return section;
 }
+
+
+const container = document.querySelector('.container');
+
+function renderAccordionItems() {
+    const qnaElemnts = []
+    for (let qna of qnaList) {
+        qnaElemnts.push(createAccordionItem(qna))
+    }
+
+    for (let elem of qnaElemnts) {
+        container.appendChild(elem)
+    }
+}
+
+renderAccordionItems()
