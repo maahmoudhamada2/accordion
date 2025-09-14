@@ -41,9 +41,11 @@ const qnaList = [
 
 export default function App() {
   return (
-    <article>
-      <header>
-        <h1>Frequently Asked Questions</h1>
+    <article className="w-[60%] mx-auto my-[50px] p-[5rem] border-2 rounded-2xl">
+      <header className="mb-[1rem]">
+        <h1 className="text-3xl font-bold mb-[1rem]">
+          Frequently Asked Questions
+        </h1>
         <p>Here are some of the frequently asked questions</p>
       </header>
       <AccordionList qnasList={qnaList} />
